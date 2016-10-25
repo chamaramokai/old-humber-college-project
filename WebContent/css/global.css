@@ -1,0 +1,29 @@
+/**
+    This file is the stylesheet for the project. All the custom styles will go here.
+    Logo Color: #E51B23;
+    Humber Blue: #009BE0;
+**/
+#logo
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+body
+{
+    background: #f2b632;
+}
+.form
+{
+    margin-top: 20px;
+    background: #252839;
+    min-height: 200px;
+    border-radius: 10px;
+    color: white;
+}
+.login-form
+{
+     display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
