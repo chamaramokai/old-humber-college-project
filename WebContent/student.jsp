@@ -4,9 +4,7 @@
 <html lang="en">
     <head>
         <title>
-            <!--Student's name goes here-->
-            <!--Get's users name from session variable and set it-->
-            <!--JSP Code here-->
+            ${username}
         </title>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/animate.css">
@@ -14,43 +12,40 @@
     </head>
     <body>
         <div class="container-fluid">
-            <!--Header Begining-->
-                <div class="row header-background">
-                    <div class="col-sm-4">
-                        <img src="img/logo.png" alt="Humber Schedule" id="logo">
+			<%@include  file="includes/header.jsp"%>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-header">
+                        <h1> ${username} <br><small>Timetable for ${username} </small></h1>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <nav class="navbar navbar-default">
-                                <div class="container-fluid">
-                                    <div class="navbar-header">
-                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        </button>
-                                    </div>
-                                    <div id="navbar" class="navbar-collapse collapse">
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="#Home">Home - Welcome ${username}</a></li>
-                                            <li><a href="#account_settings">Account Settings</a></li>
-                                        </ul>
-                                        <ul class="nav navbar-nav navbar-right">
-                                            <li><form action="Logout">
-													<input type="submit" value="Logout">
-												</form><!--<a href="#logout">Logout</a>--></li>
-											      
-                                        </ul>
-                                    </div><!--/.nav-collapse -->
-                                </div><!--/.container-fluid -->
-                            </nav>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <!-- Student Timetable displayer -->
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading"></div><!--Heading will be the program code if available, if not then we can use it to display if the schedule is available or not-->
+                            <div class="panel-body">
+                                <!--<p></p>--> <!--P tag availble for a messge that requires attention-->
+                            </div>
+
+                            <!-- Table -->
+                            <table class="table table-bordered table-hover table-condensed">
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Room Number</th>
+                                    <th>Date</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                </tr>
+                                <!--Input Data here if the data is available i.e. if the exams are scheduled-->
+                            </table>
                         </div>
-                    </div>
+                    <!-- Displayer Above -->
                 </div>
-            <!--Header end-->
+                <div class="col-sm-4"> </div>
+            </div>
         </div>
     </body>
     <script src="js/jquery.js"></script>

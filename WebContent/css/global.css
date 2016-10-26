@@ -9,10 +9,12 @@
     user-select: none;
     -webkit-user-drag: none;
 }
+
 .home-background , .header-background
 {
     background: #f2b632;
 }
+
 .form
 {
     margin-top: 20px;
@@ -20,10 +22,12 @@
     border-radius: 10px;
     min-height: 200px;
 }
+
 label
 {
     color:white;
 }
+
 .form-field
 {
     display: block;
@@ -32,6 +36,7 @@ label
     text-align: center;
     text-transform: uppercase; /*Put this property in input type text only so that password is not always uppercase */
 }
+
 .navbar
 {
     background: #252839;

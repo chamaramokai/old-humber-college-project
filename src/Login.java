@@ -28,22 +28,35 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		//replace with server
-		if (username.equals("test") && password.equals("password")){
-		 HttpSession session = request.getSession();
-		 session.setAttribute("username", username);
-			response.sendRedirect("Student.jsp");
-		}else{
-		response.sendRedirect("index.jsp");
+		
+		if(username.isEmpty() || password.isEmpty()) //form username and password is empty
+		{
+			// setting error message to variable
+			String error = new Display(Display.Type.ERROR).getHtml("Both username and password are required to process your request!\n Please try again!");
+			// code to redirect to index.html(Login Page) with error string set in session so message can be displayed in the error div.
+			response.getWriter().append("Served at: ").append(request.getContextPath()).append("\rResponse: ").append(error);
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		else // username and password not empty(Valid)
+		{
+			//replace with server
+			if (username.equals("TEST") && password.equals("password"))
+			{
+				 HttpSession session = request.getSession();
+				 session.setAttribute("username", username);
+				 response.sendRedirect("student.jsp");
+			}
+			else
+			{
+				response.sendRedirect("index.jsp");
+			}
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
