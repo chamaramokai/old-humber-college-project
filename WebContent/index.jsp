@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <html lang="en">
     <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Login</title>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/animate.css">
@@ -16,22 +17,24 @@
                     <img src="img/logo.png" alt="Humber Schedule" id="logo">
                 </div>
             </div>
-
             <!--
                 Error's to be displayed in the row below.
             -->
             <div class="row errors">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
-                    <!--Check for error session error variable and display it if not null-->
-                    <!--JSP goes here-->
+                    <!--
+                    	Check for error session error variable and display it if not null
+                    -->
+                    <!--
+                    	JSP goes here
+                    -->
                 </div>
                 <div class="col-sm-4"></div>
             </div>
             <!--
                  Error's to be displayed in the row below.
             -->
-
             <!-- Form Row -->
             <div class="row">
                 <div class="col-sm-4"></div>
@@ -40,7 +43,7 @@
                        <div class="row">
                            <div class="col-sm-2"></div>
                            <div class="col-sm-8">
-                                <form action="" method="post" id="login-form">
+                                <form action="Login" method="post" id="login-form">
                                     <!--form data-->
                                         <br>
                                         <label for="username" class="form-field">Username</label>
