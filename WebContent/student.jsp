@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-header">
-                        <h1> ${username} <br><small>Timetable for ${username} </small></h1>
+                        <h1> ${first}'s Timetable <br><small>Good Luck for your exams ${first} ${last} </small></h1>
                     </div>
                 </div>
             </div>
@@ -28,21 +28,10 @@
                     <!-- Student Timetable displayer -->
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
-                            <div class="panel-heading"></div><!--Heading will be the program code if available, if not then we can use it to display if the schedule is available or not-->
-                            <div class="panel-body">
-                                <!--<p></p>--> <!--P tag availble for a messge that requires attention-->
-                            </div>
-
                             <!-- Table -->
                             <table class="table table-bordered table-hover table-condensed">
-                                <tr>
-                                    <th>Course Code</th>
-                                    <th>Room Number</th>
-                                    <th>Date</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                </tr>
-                                <!--Input Data here if the data is available i.e. if the exams are scheduled-->
+                            	<tr> <th>Course Code</th> <th>Room Number</th> <th>Date</th> <th>Start Time</th> <th>End Time</th> </tr>
+								${data}
                             </table>
                         </div>
                     <!-- Displayer Above -->

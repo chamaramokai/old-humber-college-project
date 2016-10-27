@@ -31,7 +31,7 @@ public class Login extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		if(username.isEmpty() || password.isEmpty()) //form username and password is empty
+		if(username == null || password == null || username.isEmpty() || password.isEmpty()) //form username and password is empty
 		{
 			// setting error message to variable
 			String error = new Display(Display.Type.ERROR).getHtml("Both username and password are required to process your request!\n Please try again!");
@@ -52,6 +52,19 @@ public class Login extends HttpServlet {
 					session.setAttribute("role", data.get("ROLE"));
 					session.setAttribute("first", data.get("FIRSTNAME"));
 					session.setAttribute("last", data.get("LASTNAME"));
+					// before loading timetable for student do following
+					if(data.get("ROLE").equals("STUDENT"))
+					{
+						try
+						{
+							session.setAttribute("data", new Logic().get_student_exams(data.get("USERNAME")));
+						}
+						catch(Exception ex)
+						{
+							session.setAttribute("error", new Display(Display.Type.ERROR).getHtml(ex.getMessage()));
+						}
+					}
+					// redirect to role page URL
 					response.sendRedirect(data.get("ROLE").toLowerCase().trim() + ".jsp");
 				}
 				else

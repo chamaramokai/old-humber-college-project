@@ -74,7 +74,7 @@ public class Logic {
 			ArrayList<HashMap<String,String>> data = database.execute(query);
 			if(data.isEmpty())
 			{
-				throw new Exception("No user found with that username!");
+				throw new Exception("No user found with that username or password!");
 			}
 			else
 			{
@@ -84,7 +84,6 @@ public class Logic {
 					{
 						map.put("USERNAME", data.get(i).get("USERNAME"));
 						map.put("ROLE", data.get(i).get("ROLE"));
-						map.put("PASSWORD", data.get(i).get("PASSWORD"));
 						
 						/*Getting First Name and Last Name*/
 						query = String.format(Query.SELECT_ALL_FROM.toString(), data.get(i).get("ROLE") , uname);
@@ -95,7 +94,7 @@ public class Logic {
 							{
 								if(data.get(i).get("USERNAME").equals(uname))
 								{
-									map.put("FIRSTNAME", data.get(i).get("FIRSTNAME"));
+									map.put("FIRSTNAME",data.get(i).get("FIRSTNAME"));
 									map.put("LASTNAME", data.get(i).get("LASTNAME"));
 									return map;
 								}
@@ -111,5 +110,34 @@ public class Logic {
 		}
 		return null;
 	}
+	
+	
+	public String get_student_exams(String username) throws Exception
+	{
+		String uname = username.toUpperCase().trim();
+		String data = " ";
+		try {
+			String query = String.format(Query.SELECT_EXAMS.toString(), uname);
+			ArrayList<HashMap<String,String>> courses = database.execute(query);
+			if(courses.size() != 0)
+			{
+				for(int i=0 ; i < courses.size(); i++)
+				{
+					data += String.format("<tr> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> </tr>",
+							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("EXAM_DATE").toString(),
+							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString(),courses.get(i).get("ROOM_NO").toString());
+				}
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("You have no exam scheduled yet! Please Check Back Later!");
+		}
+		return data;
+	}
+	
 	
 }
