@@ -15,21 +15,32 @@
 	<body>
 		<div class="container-fluid">
 			<%@include  file="includes/header.jsp"%>
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="dropdown">
-						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							Action
-							<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li><a href="#schedule_exam">Schedule Exam</a></li>
-							<li><a href="#view_scheduled">View Scheduled</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
+	
+		<div class="panel-group" id="accordion">
+		  <div class="panel panel-default">
+			    <div class="panel-heading">
+				      <h4 class="panel-title">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+				        View Scheduled Exam</a>
+				      </h4>
+			    </div>
+			    <div id="collapse1" class="panel-collapse collapse in">
+			      <div class="panel-body">${data}</div>
+			    </div>
+		  </div>
+			 <div class="panel panel-default">
+				    <div class="panel-heading">
+					      <h4 class="panel-title">
+					        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+					        Schedule Exam</a>
+					      </h4>
+				    </div>
+				    <div id="collapse2" class="panel-collapse collapse out">
+				      <div class="panel-body"><%@include file="includes/new_exam.jsp" %></div>
+				    </div>
+			  </div>
+		</div> 
+		
 	</body>
 	<script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>

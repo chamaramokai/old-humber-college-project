@@ -124,8 +124,8 @@ public class Logic {
 				for(int i=0 ; i < courses.size(); i++)
 				{
 					data += String.format("<tr> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> </tr>",
-							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("EXAM_DATE").toString(),
-							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString(),courses.get(i).get("ROOM_NO").toString());
+							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("ROOM_NO").toString(),courses.get(i).get("EXAM_DATE").toString(),
+							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString());
 				}
 			}
 		} 
@@ -139,5 +139,88 @@ public class Logic {
 		return data;
 	}
 	
+	
+	public String get_scheduled_courses(String username) throws Exception
+	{
+		String uname = username.toUpperCase().trim();
+		String data = " ";
+		try {
+			String query = String.format(Query.SELECT_EXAMS.toString(), uname);
+			ArrayList<HashMap<String,String>> courses = database.execute(query);
+			if(courses.size() != 0)
+			{
+				for(int i=0 ; i < courses.size(); i++)
+				{
+					if(i==0){
+						data += "<table class=\"table table-bordered table-hover table-condensed\"> <tr> <th>Course Code</th> <th>Room Number</th> <th>Date</th> <th>Start Time</th> <th>End Time</th> </tr>";
+					}
+					data += String.format("<tr> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> </tr>",
+							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("ROOM_NO").toString(),courses.get(i).get("EXAM_DATE").toString(),
+							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString());
+				}
+				data += "</table>";
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("You have not scheduled any exam for your courses.");
+		}
+		return data;
+	}
+	
+	public String get_all_courses(String username) throws Exception {
+		String uname = username.toUpperCase().trim();
+		String data ="";
+		try {
+			String query = String.format(Query.GET_COURSES.toString(), uname);
+			ArrayList<HashMap<String,String>> courses = database.execute(query);
+			if(courses.size() != 0)
+			{
+				data +="<div class=\"form-group\"><label class=\"label label-primary\" for=\"course\">Select Course</label>";
+				data+= "<select id=\"course\" name=\"course\" class=\"form-control animated bounceInRight\" required>";
+				for(int i=0 ; i < courses.size(); i++)
+				{
+					data += "<option value="+courses.get(i).get("COURSE_CODE")+ ">" +courses.get(i).get("COURSE_CODE") +"</option>";
+				}
+				data +="</select> </div>";
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("You have not any course.");
+		}
+		return data;
+	}
+	public String get_all_rooms() throws Exception {
+		String data ="";
+		try {
+			String query = String.format(Query.GET_ROOMS.toString());
+			ArrayList<HashMap<String,String>> rooms = database.execute(query);
+			if(rooms.size() != 0)
+			{
+				data +="<div class=\"form-group\"><label class=\"label label-primary\" for=\"course\">Select Course</label>";
+				data+= "<select id=\"course\" name=\"course\" class=\"form-control animated bounceInRight\" required>";
+				for(int i=0 ; i < rooms.size(); i++)
+				{
+					data += "<option value="+rooms.get(i).get("ROOM_NO")+ ">" +rooms.get(i).get("ROOM_NO")+" - "+ rooms.get(i).get("TYPE")+"</option>";
+				}
+				data +="</select> </div>";
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("You do not any room.");
+		}
+		return data;
+	}
 	
 }
