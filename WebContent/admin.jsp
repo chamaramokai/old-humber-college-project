@@ -23,8 +23,8 @@
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li><a href="#add_user">Add User</a></li>
-							<li><a href="#modify_user">Modify User</a></li>
+							<li><a href="add_account.jsp">Add User</a></li>
+							<li><a href="edit_account.jsp">Modify User</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="#view_teacher">View Teacher</a></li>
 							<li><a href="#view_student">View Student</a></li>
