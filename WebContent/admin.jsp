@@ -30,6 +30,29 @@
 							<li><a href="#view_student">View Student</a></li>
 						</ul>
 					</div>
+					 <div class="panel panel-default">
+				
+					 <br>
+					<table class="table table-bordered table-hover table-condensed">
+                            ${data}
+                            
+                      </table>
+                      <br>
+                      <h4>List of Teachers</h4>
+                      <table class="table table-bordered table-hover table-condensed">
+					<tr><th>USERNAME:</th><th>FIRST NAME:</th><th>LAST NAME:</th></tr>
+                            ${data2}
+                            
+                      </table>
+                      <br>
+                      <h4>List of Students</h4>
+                      <table class="table table-bordered table-hover table-condensed">
+					<tr><th>USERNAME:</th><th>FIRST NAME:</th><th>LAST NAME:</th></tr>
+                            ${data3}
+                            
+                      </table>
+                      
+                      </div>
 				</div>
 			</div>
 			
