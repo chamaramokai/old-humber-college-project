@@ -41,32 +41,3 @@ label
 {
     background: #252839;
 }
-
-.action-dropdown
-{
-    background: #252839;
-    width: 25%;
-    z-index: 2;
-    border-radius: 10px;
-}
-
-.list
-{
-    list-style-type: none;
-    display: block;
-}
-
-.list > li > a
-{
-    color: white;
-}
-
-.list > li > a:hover
-{
-    color: #efefef;
-}
-
-.dropdown
-{
-    margin: 10px;
-}

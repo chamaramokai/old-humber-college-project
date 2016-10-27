@@ -1,8 +1,6 @@
 
 
 import java.io.IOException;
-import java.util.HashMap;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,31 +38,18 @@ public class Login extends HttpServlet {
 		}
 		else // username and password not empty(Valid)
 		{
-			HttpSession session = request.getSession();
-			try
+			//replace with server
+			if (username.equals("TEST") && password.equals("password"))
 			{
-				boolean valid = new Logic().authenticate(username, password);
-				
-				if(valid)
-				{
-					HashMap<String,String> data = new Logic().get_info(username);
-					session.setAttribute("username", data.get("USERNAME"));
-					session.setAttribute("role", data.get("ROLE"));
-					session.setAttribute("first", data.get("FIRSTNAME"));
-					session.setAttribute("last", data.get("LASTNAME"));
-					response.sendRedirect(data.get("ROLE").toLowerCase().trim() + ".jsp");
-				}
-				else
-				{
-					session.setAttribute("error", new Display(Display.Type.ERROR).getHtml("No User Found with the database"));
-					response.sendRedirect("index.jsp");
-				}
+				 HttpSession session = request.getSession();
+				 session.setAttribute("username", username);
+				 response.sendRedirect("/student.jsp");
 			}
-			catch(Exception ex)
+			else
 			{
-				session.setAttribute("error", new Display(Display.Type.ERROR).getHtml(ex.getMessage()));
 				response.sendRedirect("index.jsp");
 			}
+			response.getWriter().append("Served at: ").append(request.getContextPath());
 		}
 	}
 
