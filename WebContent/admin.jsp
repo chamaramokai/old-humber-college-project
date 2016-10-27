@@ -14,6 +14,24 @@
 	<body>
 		<div class="container-fluid">
 			<%@include  file="includes/header.jsp"%>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Action
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="#add_user">Add User</a></li>
+							<li><a href="#modify_user">Modify User</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#view_teacher">View Teacher</a></li>
+							<li><a href="#view_student">View Student</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			
 		</div>
 	</body>
 	<script src="js/jquery.js"></script>

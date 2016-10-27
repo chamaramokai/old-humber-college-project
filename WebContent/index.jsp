@@ -26,6 +26,8 @@
                     <!--
                     	Check for error session error variable and display it if not null
                     -->
+                    		${error}
+                    		<% request.getSession().setAttribute("error", null); %>
                     <!--
                     	JSP goes here
                     -->

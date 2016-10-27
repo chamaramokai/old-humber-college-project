@@ -14,10 +14,20 @@
 	<body>
 		<div class="container-fluid">
 			<%@include  file="includes/header.jsp"%>
-			<!--
-				Questions: Do we want to show teachers scheduled exam status?? I mean when this page loads up teacher has not yet choosen the action so the page is empty.
-				Should we fill up the page with some meaningfull info like courses taught by the teacher and which once are already scheduled and stuff or we will make one of the activity default.
-			-->
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="dropdown">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							Action
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a href="#schedule_exam">Schedule Exam</a></li>
+							<li><a href="#view_scheduled">View Scheduled</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 	<script src="js/jquery.js"></script>
