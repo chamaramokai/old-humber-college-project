@@ -124,8 +124,8 @@ public class Logic {
 				for(int i=0 ; i < courses.size(); i++)
 				{
 					data += String.format("<tr> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> </tr>",
-							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("EXAM_DATE").toString(),
-							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString(),courses.get(i).get("ROOM_NO").toString());
+							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("ROOM_NO").toString(),courses.get(i).get("EXAM_DATE").toString(),
+							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString());
 				}
 			}
 		} 
