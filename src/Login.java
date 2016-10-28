@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/Login")
+@WebServlet(urlPatterns={"/Login","/login","/LOGIN"})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,6 +37,9 @@ public class Login extends HttpServlet {
 			String error = new Display(Display.Type.ERROR).getHtml("Both username and password are required to process your request!\n Please try again!");
 			// code to redirect to index.html(Login Page) with error string set in session so message can be displayed in the error div.
 			response.getWriter().append("Served at: ").append(request.getContextPath()).append("\rResponse: ").append(error);
+			HttpSession session = request.getSession();
+			session.setAttribute("error", error);
+			response.sendRedirect("index.jsp");
 		}
 		else // username and password not empty(Valid)
 		{
@@ -64,10 +67,36 @@ public class Login extends HttpServlet {
 						{
 							session.setAttribute("error", new Display(Display.Type.ERROR).getHtml(ex.getMessage()));
 						}
+					} 
+					else if(data.get("ROLE").equals("TEACHER")) 
+					{
+						try
+						{
+							session.setAttribute("data", new Logic().get_scheduled_courses(data.get("USERNAME")));
+							session.setAttribute("courses", new Logic().get_all_courses(data.get("USERNAME")));
+							session.setAttribute("rooms", new Logic().get_all_rooms());
+							
+						}
+						catch(Exception ex)
+						{
+							session.setAttribute("error", new Display(Display.Type.ERROR).getHtml(ex.getMessage()));
+						}
+					}
+					if(data.get("ROLE").equals("ADMIN")){
+						try{
+							session.setAttribute("data", new Logic().get_number_of_users());
+							session.setAttribute("data2", new Logic().get_teacher_list());
+							session.setAttribute("data3", new Logic().get_student_list());
+							
+						}
+						catch(Exception ex)
+						{
+							session.setAttribute("error", new Display(Display.Type.ERROR).getHtml(ex.getMessage()));
+						}
 					}
 					// redirect to role page URL
 					response.sendRedirect(data.get("ROLE").toLowerCase().trim() + ".jsp");
-				}
+				} 
 				else
 				{
 					session.setAttribute("error", new Display(Display.Type.ERROR).getHtml("No User Found with the database"));

@@ -124,8 +124,19 @@ public class Logic {
 				for(int i=0 ; i < courses.size(); i++)
 				{
 					data += String.format("<tr> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> </tr>",
+<<<<<<< HEAD
 							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("ROOM_NO").toString(),courses.get(i).get("EXAM_DATE").toString(),
 							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString());
+=======
+<<<<<<< HEAD
+							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("ROOM_NO").toString(),courses.get(i).get("EXAM_DATE").toString(),
+							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString());
+=======
+							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("EXAM_DATE").toString(),
+							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString(),courses.get(i).get("ROOM_NO").toString());
+					
+>>>>>>> origin/devs
+>>>>>>> origin/devs
 				}
 			}
 		} 
@@ -139,5 +150,161 @@ public class Logic {
 		return data;
 	}
 	
+	public String get_number_of_users() throws Exception
+	{
+		String data = " ";
+		try {
+			String query = Query.SELECT_NUMBER_OF_USERS.toString();
+			ArrayList<HashMap<String,String>> datatable = database.execute(query);
+			data+= String.format("<tr> <th>Number of users:</th><th>%s</th></tr>", datatable.get(0).get("TOTAL").toString());
+				//System.out.println("data1"+data);
+			
+		}catch (Exception e) {
+			throw e;
+		}
+		if(data == " "){
+			data =  new Display(Display.Type.INFO).getHtml("ERROR TO BE FIXED");
+			//System.out.println("data2"+data);
+		}
+		return data;
+	}
+	public String get_teacher_list() throws Exception
+	{
+		
+		String data = " ";
+		try {
+			String query = String.format(Query.SELECT_INFO_OF_TEACHERS.toString());
+			ArrayList<HashMap<String,String>> teachers = database.execute(query);
+			if(teachers.size() != 0)
+			{
+				for(int i=0 ; i < teachers.size(); i++)
+				{
+					data += String.format("<tr> <th>%s</th> <th>%s</th> <th>%s</th> </tr>",
+							teachers.get(i).get("USERNAME").toString(),teachers.get(i).get("FIRSTNAME").toString(),
+							teachers.get(i).get("LASTNAME").toString());
+					
+				}
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("No Teachers added.");
+		}
+		return data;
+	}
+	
+	public String get_student_list() throws Exception
+	{
+		
+		String data = " ";
+		try {
+			String query = String.format(Query.SELECT_INFO_OF_STUDENTS.toString());
+			ArrayList<HashMap<String,String>> students = database.execute(query);
+			if(students.size() != 0)
+			{
+				for(int i=0 ; i < students.size(); i++)
+				{
+					data += String.format("<tr> <th>%s</th> <th>%s</th> <th>%s</th> </tr>",
+							students.get(i).get("USERNAME").toString(),students.get(i).get("FIRSTNAME").toString(),
+							students.get(i).get("LASTNAME").toString());
+					
+				}
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("No Students added.");
+		}
+		return data;
+	}
+	
+	public String get_scheduled_courses(String username) throws Exception
+	{
+		String uname = username.toUpperCase().trim();
+		String data = " ";
+		try {
+			String query = String.format(Query.SELECT_EXAMS.toString(), uname);
+			ArrayList<HashMap<String,String>> courses = database.execute(query);
+			if(courses.size() != 0)
+			{
+				for(int i=0 ; i < courses.size(); i++)
+				{
+					if(i==0){
+						data += "<table class=\"table table-bordered table-hover table-condensed\"> <tr> <th>Course Code</th> <th>Room Number</th> <th>Date</th> <th>Start Time</th> <th>End Time</th> </tr>";
+					}
+					data += String.format("<tr> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> <td>%s</td> </tr>",
+							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("ROOM_NO").toString(),courses.get(i).get("EXAM_DATE").toString(),
+							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString());
+				}
+				data += "</table>";
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("You have not scheduled any exam for your courses.");
+		}
+		return data;
+	}
+	
+	public String get_all_courses(String username) throws Exception {
+		String uname = username.toUpperCase().trim();
+		String data ="";
+		try {
+			String query = String.format(Query.GET_COURSES.toString(), uname);
+			ArrayList<HashMap<String,String>> courses = database.execute(query);
+			if(courses.size() != 0)
+			{
+				data +="<div class=\"form-group\"><label class=\"label label-primary\" for=\"course\">Select Course</label>";
+				data+= "<select id=\"course\" name=\"course\" class=\"form-control animated bounceInRight\" required>";
+				for(int i=0 ; i < courses.size(); i++)
+				{
+					data += "<option value="+courses.get(i).get("COURSE_CODE")+ ">" +courses.get(i).get("COURSE_CODE") +"</option>";
+				}
+				data +="</select> </div>";
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("You have not any course.");
+		}
+		return data;
+	}
+	public String get_all_rooms() throws Exception {
+		String data ="";
+		try {
+			String query = String.format(Query.GET_ROOMS.toString());
+			ArrayList<HashMap<String,String>> rooms = database.execute(query);
+			if(rooms.size() != 0)
+			{
+				data +="<div class=\"form-group\"><label class=\"label label-primary\" for=\"course\">Select Course</label>";
+				data+= "<select id=\"course\" name=\"course\" class=\"form-control animated bounceInRight\" required>";
+				for(int i=0 ; i < rooms.size(); i++)
+				{
+					data += "<option value="+rooms.get(i).get("ROOM_NO")+ ">" +rooms.get(i).get("ROOM_NO")+" - "+ rooms.get(i).get("TYPE")+"</option>";
+				}
+				data +="</select> </div>";
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("You do not any room.");
+		}
+		return data;
+	}
 	
 }

@@ -9,6 +9,14 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.40-bin.jar"/>
+=======
+<<<<<<< HEAD
+	<classpathentry exported="true" kind="lib" path="/Users/nish/Dropbox/College/3rd Sem/OOP/Final/WebContent/WEB-INF/lib/mysql-connector-java-5.1.40-bin.jar"/>
+=======
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.40-bin.jar"/>
+>>>>>>> origin/devs
+>>>>>>> origin/devs
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
