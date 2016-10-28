@@ -20,7 +20,7 @@
                                     <div id="navbar" class="navbar-collapse collapse">
                                         <ul class="nav navbar-nav">
                                             <li><a href="#Home">Home - Welcome ${first}</a></li>
-                                            <li><a href="#account_settings">Account Settings</a></li>
+                                            <li><a href="account_settings.jsp">Account Settings</a></li>
                                         </ul>
                                         <ul class="nav navbar-nav navbar-right">
                                         	<li><a href="Logout">Logout</a></li>
