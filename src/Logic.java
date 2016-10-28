@@ -124,8 +124,14 @@ public class Logic {
 				for(int i=0 ; i < courses.size(); i++)
 				{
 					data += String.format("<tr> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> <th>%s</th> </tr>",
+<<<<<<< HEAD
 							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("ROOM_NO").toString(),courses.get(i).get("EXAM_DATE").toString(),
 							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString());
+=======
+							courses.get(i).get("COURSE_CODE").toString(),courses.get(i).get("EXAM_DATE").toString(),
+							courses.get(i).get("START_TIME").toString(),courses.get(i).get("END_TIME").toString(),courses.get(i).get("ROOM_NO").toString());
+					
+>>>>>>> origin/devs
 				}
 			}
 		} 
@@ -139,6 +145,79 @@ public class Logic {
 		return data;
 	}
 	
+	public String get_number_of_users() throws Exception
+	{
+		String data = " ";
+		try {
+			String query = Query.SELECT_NUMBER_OF_USERS.toString();
+			ArrayList<HashMap<String,String>> datatable = database.execute(query);
+			data+= String.format("<tr> <th>Number of users:</th><th>%s</th></tr>", datatable.get(0).get("TOTAL").toString());
+				//System.out.println("data1"+data);
+			
+		}catch (Exception e) {
+			throw e;
+		}
+		if(data == " "){
+			data =  new Display(Display.Type.INFO).getHtml("ERROR TO BE FIXED");
+			//System.out.println("data2"+data);
+		}
+		return data;
+	}
+	public String get_teacher_list() throws Exception
+	{
+		
+		String data = " ";
+		try {
+			String query = String.format(Query.SELECT_INFO_OF_TEACHERS.toString());
+			ArrayList<HashMap<String,String>> teachers = database.execute(query);
+			if(teachers.size() != 0)
+			{
+				for(int i=0 ; i < teachers.size(); i++)
+				{
+					data += String.format("<tr> <th>%s</th> <th>%s</th> <th>%s</th> </tr>",
+							teachers.get(i).get("USERNAME").toString(),teachers.get(i).get("FIRSTNAME").toString(),
+							teachers.get(i).get("LASTNAME").toString());
+					
+				}
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("No Teachers added.");
+		}
+		return data;
+	}
+	
+	public String get_student_list() throws Exception
+	{
+		
+		String data = " ";
+		try {
+			String query = String.format(Query.SELECT_INFO_OF_STUDENTS.toString());
+			ArrayList<HashMap<String,String>> students = database.execute(query);
+			if(students.size() != 0)
+			{
+				for(int i=0 ; i < students.size(); i++)
+				{
+					data += String.format("<tr> <th>%s</th> <th>%s</th> <th>%s</th> </tr>",
+							students.get(i).get("USERNAME").toString(),students.get(i).get("FIRSTNAME").toString(),
+							students.get(i).get("LASTNAME").toString());
+					
+				}
+			}
+		} 
+		catch (Exception e) {
+			throw e;
+		}
+		if(data == " ")
+		{
+			data = new Display(Display.Type.INFO).getHtml("No Students added.");
+		}
+		return data;
+	}
 	
 	public String get_scheduled_courses(String username) throws Exception
 	{

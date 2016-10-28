@@ -81,6 +81,18 @@ public class Login extends HttpServlet {
 							session.setAttribute("error", new Display(Display.Type.ERROR).getHtml(ex.getMessage()));
 						}
 					}
+					if(data.get("ROLE").equals("ADMIN")){
+						try{
+							session.setAttribute("data", new Logic().get_number_of_users());
+							session.setAttribute("data2", new Logic().get_teacher_list());
+							session.setAttribute("data3", new Logic().get_student_list());
+							
+						}
+						catch(Exception ex)
+						{
+							session.setAttribute("error", new Display(Display.Type.ERROR).getHtml(ex.getMessage()));
+						}
+					}
 					// redirect to role page URL
 					response.sendRedirect(data.get("ROLE").toLowerCase().trim() + ".jsp");
 				} 
